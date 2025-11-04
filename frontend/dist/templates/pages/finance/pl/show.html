@@ -1,0 +1,205 @@
+<div class="px-4 py-4">
+    <div class="pricing-header p-3 pb-md-4 mx-auto menu-font-color">
+        <h1>Доходы и расходы</h1>
+    </div>
+
+    <div class="mb-5 ">
+        <div class="d-flex ">
+            <div>
+                <a href="/finance-pl/add-income" class="btn btn-block btn-success ">
+                    Создать доход
+                </a>
+            </div>
+            <div class="mx-2">
+                <a href="/finance-pl/add-cost" class="btn btn-block btn-danger">
+                    Создать расход
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse">
+<!--                <ul class="nav nav-pills nav-fill">-->
+<!--                    <li class="nav-item">-->
+<!--                        <button type="button" class="btn border border-secondary navbar-button-width btn-secondary">-->
+<!--                            Сегодня-->
+<!--                        </button>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <span class="navbar-menu-left-gap"></span>-->
+<!--                        <button type="button" class="btn border border-secondary navbar-button-width ">Неделя</button>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <span class="navbar-menu-left-gap"></span>-->
+<!--                        <button type="button" class="btn border border-secondary navbar-button-width ">Месяц</button>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <span class="navbar-menu-left-gap"></span>-->
+<!--                        <button type="button" class="btn border border-secondary navbar-button-width ">Год</button>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <span class="navbar-menu-left-gap"></span>-->
+<!--                        <button type="button" class="btn border border-secondary navbar-button-width ">Все</button>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <form class="d-flex">-->
+<!--                            <span class="navbar-menu-left-gap"></span>-->
+<!--                            <div class="px-2 pt-2">c</div>-->
+<!--                            <div><input type="date" class="form-control" placeholder="Дата" aria-label="Search"></div>-->
+<!--                            <div class="px-2 pt-2">по</div>-->
+<!--                            <input class="form-control" type="date" placeholder="Дата">-->
+<!--                        </form>-->
+<!--                    </li>-->
+<!--                </ul>-->
+                <ul class="nav nav-pills nav-fill">
+                    <div class="d-flex">
+                        <div class="d-flex">
+                            <li class="nav-item">
+                                <!--                                btn-secondary                                -->
+                                <button type="button"
+                                        class="btn border border-secondary navbar-button-width btn-secondary" choice-flag="0"
+                                        id="trans-flag-0">
+                                    Сегодня
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <span class="navbar-menu-left-gap"></span>
+                                <button type="button" class="btn border border-secondary navbar-button-width"
+                                        choice-flag="1" id="trans-flag-1">Неделя
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <span class="navbar-menu-left-gap"></span>
+                                <button type="button" class="btn border border-secondary navbar-button-width"
+                                        choice-flag="2" id="trans-flag-2">Месяц
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <span class="navbar-menu-left-gap"></span>
+                                <button type="button" class="btn border border-secondary navbar-button-width"
+                                        choice-flag="3" id="trans-flag-3">Год
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <span class="navbar-menu-left-gap"></span>
+                                <button type="button" class="btn border border-secondary navbar-button-width"
+                                        choice-flag="4" id="trans-flag-4">Все
+                                </button>
+                            </li>
+
+                        </div>
+                        <li>
+                            <form class="d-flex">
+                                <div>
+                                    <span class="navbar-menu-left-gap"></span>
+                                    <button type="button" class="btn border border-secondary navbar-button-width"
+                                            choice-flag="5" id="trans-flag-5">
+                                        Интервал
+                                    </button>
+                                </div>
+                                <div class="px-2 pt-2">c</div>
+                                <div>
+                                    <input type="date" class="form-control" placeholder="Дата"
+                                           aria-label="Search" id="trans-date-from">
+                                    <span id="gl-date-from-error"
+                                          class="error invalid-feedback">Введите дату</span>
+                                </div>
+                                <div class="px-2 pt-2">по</div>
+                                <div>
+                                    <input class="form-control" type="date" placeholder="Дата"
+                                           aria-label="Search" id="trans-date-to">
+                                    <span id="gl-date-to-error"
+                                          class="error invalid-feedback">Введите дату</span>
+                                </div>
+                            </form>
+                        </li>
+                    </div>
+                </ul>
+
+
+            </div>
+        </div>
+
+    </nav>
+
+    <div class="pad-top-20">
+
+        <table class="table table-hover border-top text-center" id="pl-table">
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th class="col-2"><h5 class="menu-font-color">№ операции</h5></th>-->
+<!--                <th class="col-2"><h5 class="menu-font-color">Тип</h5></th>-->
+<!--                <th class="col-2"><h5 class="menu-font-color">Категория</h5></th>-->
+<!--                <th class="col-2"><h5 class="menu-font-color">Сумма</h5></th>-->
+<!--                <th class="col-2"><h5 class="menu-font-color">Дата</h5></th>-->
+<!--                <th class="col-5"><h5 class="menu-font-color">Комментарий</h5></th>-->
+<!--                <th class="col-2"></th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--                    <tr>-->
+<!--                        <td><span class="menu-font-color">1</span></td>-->
+<!--                        <td><span class="text-success">доход</span></td>-->
+<!--                        <td>зарплата</td>-->
+<!--                        <td>2500$</td>-->
+<!--                        <td>12.09.2022</td>-->
+<!--                        <td></td>-->
+<!--                        <td>-->
+<!--                            <div class="d-flex">-->
+<!--                                <button type="button" data-bs-toggle="modal" class="border-0 bg-transparent" value="1"-->
+<!--                                        data-bs-target="#removeTransact">-->
+<!--                                    <ia class="fa fa-trash"></ia>-->
+<!--                                </button>-->
+<!--                                <a href="/finance-pl/edit-income" class="mx-2">-->
+<!--                                    <ia class="fa fa-pencil"></ia>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+            <!--        <tr>-->
+            <!--            <td><span class="menu-font-color">2</span></td>-->
+            <!--            <td><span class="text-danger">расход</span></td>-->
+            <!--            <td>жильё</td>-->
+            <!--            <td>500$</td>-->
+            <!--            <td>11.09.2022</td>-->
+            <!--            <td></td>-->
+            <!--            <td>-->
+            <!--                <div class="d-flex">-->
+            <!--                    <button type="button" data-bs-toggle="modal" class="border-0 bg-transparent" value="2"-->
+            <!--                            data-bs-target="#removeTransact">-->
+            <!--                        <ia class="fa fa-trash"></ia>-->
+            <!--                    </button>-->
+            <!--                    <a href="/finance-pl/edit-cost" class="mx-2">-->
+            <!--                        <ia class="fa fa-pencil"></ia>-->
+            <!--                    </a>-->
+            <!--                </div>-->
+            <!--            </td>-->
+            <!--        </tr>-->
+        </table>
+    </div>
+</div>
+
+
+<div class="modal modal fade" id="removeTransact" tabindex="-1" aria-labelledby="removeTransactLabel"
+     aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body  pt-5">
+                <h5 class="text-group-color">Вы действительно хотите удалить операцию?</h5>
+            </div>
+            <div class="container text-center pb-5">
+                <div class="row">
+                    <div class="col text-end">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"  id="remove-button">Да удалить</button>
+                    </div>
+                    <div class="col text-start">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Не удалять</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

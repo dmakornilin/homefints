@@ -1,0 +1,98 @@
+
+<div class="py-4 max-1200">
+    <div class="pricing-header p-3 pb-md-4 mx-auto menu-font-color">
+        <h1>Доходы</h1>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 mb-3" id="category-container">
+<!--        <div class="col">-->
+<!--            <div class="card mb-4 rounded-3  group-block-height">-->
+<!--                <div class="card-header border-0 py-3 bg-body">-->
+<!--                    <h4 class="my-0 fw-normal text-group-color">Депозиты</h4>-->
+<!--                    <div class="d-flex py-2 gap-2">-->
+<!--                        <a href="/income/edit" class="btn btn-block btn-primary">Редактировать</a>-->
+<!--                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"-->
+<!--                                data-bs-target="#removeGroup">-->
+<!--                            Удалить-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--            <div class="card mb-4 rounded-3  group-block-height">-->
+<!--                <div class="card-header border-0 py-3 bg-body">-->
+<!--                    <h4 class="my-0 fw-normal text-group-color">Зарплата</h4>-->
+<!--                    <div class="d-flex py-2 gap-2">-->
+<!--                        <a href="/income/edit" class="btn btn-block btn-primary">Редактировать</a>-->
+<!--                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"-->
+<!--                                data-bs-target="#removeGroup">-->
+<!--                            Удалить-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--            <div class="card mb-4 rounded-3  group-block-height">-->
+<!--                <div class="card-header border-0 py-3 bg-body">-->
+<!--                    <h4 class="my-0 fw-normal text-group-color">Сбережения</h4>-->
+<!--                    <div class="d-flex py-2 gap-2">-->
+<!--                        <a href="/income/edit" class="btn btn-block btn-primary">Редактировать</a>-->
+<!--                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"-->
+<!--                                data-bs-target="#removeGroup">-->
+<!--                            Удалить-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--            <div class="card mb-4 rounded-3  group-block-height">-->
+<!--                <div class="card-header border-0 py-3 bg-body">-->
+<!--                    <h4 class="my-0 fw-normal text-group-color">Инвестиции</h4>-->
+<!--                    <div class="d-flex py-2 gap-2">-->
+<!--                        <a href="/income/edit" class="btn btn-block btn-primary">Редактировать</a>-->
+<!--                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"-->
+<!--                                data-bs-target="#removeGroup">-->
+<!--                            Удалить-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        <div class="col">
+            <div class="col rounded-3 ">
+                <a href="/income/add" class="text-decoration-none">
+                    <div class="card mb-4 group-block-height d-flex align-items-center justify-content-center">
+                        <div class="d-flex text-center">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal modal fade" id="removeGroup" tabindex="-1" aria-labelledby="removeGroupLabel"
+     aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body  pt-5">
+                <h5 class="text-group-color">Вы действительно хотите удалить категорию?<br>Связанные доходы останутся без категории</h5>
+            </div>
+            <div class="container text-center pb-5">
+                <div class="row text-center">
+                    <div class="col text-end">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"  id="to-delete-category">Да удалить</button>
+                    </div>
+                    <div class="col text-start">
+                        <button type="button" class="btn btn-danger"  data-bs-dismiss="modal">Не удалять</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

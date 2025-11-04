@@ -1,0 +1,98 @@
+<div class="layout d-flex">
+    <aside class="layout-sidebar-full">
+        <div class="layout-sidebar d-flex flex-column wysota-100 justify-content-between right-vertical-line bottom-otstup-20">
+            <div>
+                <div class="layout-logo border-bottom mt-4 pb-4">
+                    <a href="/login"
+                       class="d-flex align-items-center mx-auto mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <img src="/images/logo.png" alt="logo" class="mx-auto"/>
+                    </a>
+                </div>
+                <div class="layout-menu mt-4 ms-3">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item mb-1">
+                            <div class="d-flex">
+                                <a href="/" class="nav-link " aria-current="page" id="start-choice">
+                                    <i class="nav-icon fas fa-home me-2"></i>
+                                    Главная
+                                </a>
+                                <div class="otstup12"></div>
+                            </div>
+                        </li>
+                        <li class="nav-item  mb-1 ">
+                            <div class="d-flex">
+                                <a href="/finance-pl" class="nav-link  navbar-button-width" id="finance-pl">
+                                    <!-- active     aria-current="page"-->
+                                    <i class="fa-solid fa-money-bills me-2 "></i>
+                                    Доходы & расходы
+                                </a>
+                                <div class="otstup12"></div>
+                            </div>
+
+                        </li>
+                        <li class="nav-item" id="nav-item-last">
+                            <div class="my-accordion">
+                                <div class="accordion accordion-flush rounded-2 " id="menu-category">
+                                    <!--                                    border-ramka                                    -->
+                                    <h2 class="accordion-header" id="flush-headingOne">
+                                        <button class="accordion-button collapsed rounded-2  accord-wysota" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#item-1"
+                                                id="income-nav-bottom"
+                                        >
+                                            <a href="javascript:void(0)" class="header-accordion-font">
+                                                <span class="dlina-ctg">Категории</span>
+                                                <i class="chevron fa-solid fa-chevron-right header-category-arrow"></i>
+                                            </a>
+                                        </button>
+                                    </h2>
+                                    <!--                                         collapse-->
+                                    <div id="item-1" class="accordion-collapse"
+                                         data-bs-parent="#menu-category">
+                                        <div class="accordion-body no-padding-x no-padding-bottom ">
+                                            <div class="list-group no-padding-x rounded-0" id="list-tab" role="tablist">
+                                                <a class="list-group-item list-group-item-action font-active-color"
+                                                   id="list-incoms"
+                                                   data-bs-toggle="list" href="/incoms" role="tab"
+                                                   aria-controls="list-incoms">Доходы</a>
+                                                <a class="list-group-item list-group-item-action font-active-color"
+                                                   id="list-costs"
+                                                   data-bs-toggle="list" href="/costs" role="tab"
+                                                   aria-controls="list-costs">Расходы</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mb-3 mt-3">
+                <div class="layout-menu-balance border-bottom mb-3 ">
+                    <p>Баланс:<span class="ms-2" id="balance-amount"></span></p>
+                </div>
+                <div class="layout-user dropdown user d-flex align-items-center no-padding-left">
+                    <a href="/"
+                       class="layout-user-name d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                       id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="avatar d-flex justify-content-center align-items-center flex-lg-wrap">
+                            <i class="fas fa-circle-user fa-2xl left-10"></i>
+                            <span class="menu-font-color login-width" id="login-name"> Пользователь</span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu btn-toggle-logout" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="/logout">Выйти</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="content-wrapper container-fluid otstup_layout" id="content-layout"></div>
+
+</div>
+
+
+
+
