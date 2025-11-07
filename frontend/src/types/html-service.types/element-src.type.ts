@@ -1,0 +1,1 @@
+export type  LinkElementSrc = HTMLLinkElement  &  {src?: string};

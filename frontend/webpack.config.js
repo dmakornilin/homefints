@@ -4,7 +4,8 @@ const CopyPlugin = require("copy-webpack-plugin");
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-    entry: './src/app.js',
+    entry: './src/app.ts',
+    devtool: "inline-source-map",
     mode: 'development',
     output: {
         filename: 'app.js',
@@ -20,11 +21,13 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.scss$/i,
+                test: /\.tsx$/i,
                 use: [
+                    "ts-loader",
                     "style-loader",
                     "css-loader",
                     "sass-loader",
+                    "babel-loader",
                 ],
             },
         ],
@@ -51,5 +54,12 @@ module.exports = {
         }),
 
     ],
-    resolve: { alias: { 'chart.js': 'chart.js/dist/chart.js', 'chart.js/auto': 'chart.js/dist/chart.js', 'chart.js/plugins': 'chart.js/dist/plugins', 'chart.js/scales': 'chart.js/dist/scales', }, },
+    resolve: {
+        extensions: [".ts", ".tsx", ".js"],
+        extensionAlias: {
+            ".js": [".js", ".ts"],
+            ".cjs": [".cjs", ".cts"],
+            ".mjs": [".mjs", ".mts"]
+        }        // alias: { 'chart.js': 'chart.js/dist/chart.js', 'chart.js/auto': 'chart.js/dist/chart.js', 'chart.js/plugins': 'chart.js/dist/plugins', 'chart.js/scales': 'chart.js/dist/scales', },
+         },
 }

@@ -1,0 +1,1 @@
+{"version":3,"file":"idtrans-respose.type.d.ts","sourceRoot":"","sources":["idtrans-respose.type.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,kBAAkB,GAAG;IAC7B,KAAK,CAAC,EAAE,OAAO,CAAC;IAChB,QAAQ,EAAE;QACN,EAAE,EAAE,MAAM,CAAC;QACX,IAAI,EAAE,IAAI,CAAC;QACX,MAAM,EAAE,MAAM,CAAC;QACf,QAAQ,EAAE,MAAM,CAAC;QACjB,OAAO,EAAE,MAAM,GAAG,IAAI,CAAA;KACzB,CAAA;CACJ,CAAA"}
