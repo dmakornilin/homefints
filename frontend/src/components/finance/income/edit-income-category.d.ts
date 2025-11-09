@@ -6,7 +6,7 @@ export declare class EditIncomeCategory {
     private readonly categoryName;
     private readonly validations;
     constructor(openNewRoute: NewRouteFunction, commonParams: CommonParams | undefined);
-    private addCategory;
+    private editCategory;
     private initial;
 }
 //# sourceMappingURL=edit-income-category.d.ts.map

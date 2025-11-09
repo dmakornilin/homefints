@@ -1,6 +1,5 @@
 import {AuthUtils} from "../../../utils/auth-util";
 import {NumberUtils} from "../../../utils/number-utils";
-import {DateElements} from "../../../utils/date-elemets";
 import type {NewRouteFunction} from "../../../types/util-types/new-route.type";
 import {CommonParams} from "../../../utils/common_params";
 import {ChoiceDataModule} from "../../../utils/choice-data-module";
@@ -29,7 +28,7 @@ export class FinancePl {
         this.initial();
     }
 
-    async removeTransId(event: Event): Promise<void> {
+    async removeTransId(event: PointerEvent): Promise<void> {
         if (!this.commonParams) {
             return
         }
@@ -102,14 +101,17 @@ export class FinancePl {
         }
     }
 
-    public async setChoiceFlag(element: any): Promise<void> {
+    public async setChoiceFlag(e: PointerEvent): Promise<void> {
         if (!this.commonParams) {
             return
         }
         const param: ChoiceDataModule = this.commonParams.transactDataModule;
-        const ss: string | null = element.getAttribute('choice-flag')
+        const ss: string | null = (e.srcElement as HTMLElement).getAttribute('choice-flag')
+
         if (!ss) return;
+
         const flg: number = parseInt(ss);
+
         param.flag = flg;
         let result: boolean = false;
         if (flg === 0) {
@@ -145,19 +147,21 @@ export class FinancePl {
         if (!result) {
             return
         }
+
+
         if (await param.reloadOperations()) {
             this.showOperations(param.dataTrans);
         }
     }
 
-    private toChoiceTransAct(element: any): void {
-        const ss: string | null = element.getAttribute('id-transact');
+    private toChoiceTransAct(e: PointerEvent): void {
+        const ss: string | null = (e.srcElement as HTMLElement).getAttribute('id-transact');
         if (!ss) return;
         if (!this.commonParams) {
             return
         }
-        // console.log(idTans);
         this.commonParams.transId = parseInt(ss);
+        this.commonParams.choiceTransId = parseInt(ss);
     }
 
     private showOperations(operList: DataTransElement[]): void {
@@ -217,10 +221,11 @@ export class FinancePl {
                 captHeadElement.appendChild(captTrElement);
                 this.tableElement.appendChild(captHeadElement);
             }
+
+
             for (let i: number = operList.length - 1; i >= 0; i--) {
                 current = operList[i];
                 if (current) {
-                    // console.log(current);
                     const trElement = document.createElement('tr');
                     ii++;
                     const td1Element = document.createElement('td');
@@ -248,9 +253,9 @@ export class FinancePl {
                     }
                     trElement.appendChild(tdSumElement);
                     const tdDataElement = document.createElement('td');
-                    const ss: string | null = DateElements.dtStrToString(String(current.date));
-                    if (current.date && ss) {
-                        tdDataElement.innerText = ss;
+
+                    if (current.date) {
+                        tdDataElement.innerText = current.date.toString();
                     }
                     trElement.appendChild(tdDataElement);
 
@@ -281,17 +286,19 @@ export class FinancePl {
 
                     const hrefEditElement = document.createElement('a');
 
-                    if (current.type === Config.incomeKey) {
-                        hrefEditElement.href = '/finance-pl/edit-income';
-                    } else {
-                        hrefEditElement.href = '/finance-pl/edit-cost';
+                    if (nn) {
+                        if (current.type === Config.incomeKey) {
+                            hrefEditElement.href = '/finance-pl/edit-income?id=' + nn.toString();
+                        } else {
+                            hrefEditElement.href = '/finance-pl/edit-cost?id=' + nn.toString();
+                        }
                     }
                     hrefEditElement.className = 'mx-2';
                     const editIaElement = document.createElement('ia');
                     editIaElement.className = 'fa fa-pencil';
                        nn=current.id;
                     if (nn) {editIaElement.setAttribute('id-transact', nn.toString());}
-                    editIaElement.addEventListener('click', this.toChoiceTransAct.bind(this));
+                    // editIaElement.addEventListener('click', this.toChoiceTransAct.bind(this));
 
                     hrefEditElement.appendChild(editIaElement);
                     divActionsElement.appendChild(hrefEditElement);
@@ -302,6 +309,5 @@ export class FinancePl {
                 }
             }
         }
-
     }
 }

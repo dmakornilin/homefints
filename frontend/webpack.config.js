@@ -13,7 +13,7 @@ module.exports = {
         publicPath: '/'
     },
     devServer: {
-        static: '.dist',
+        static: './dist',
         compress: true,
         port: 9001,
         historyApiFallback: true,
@@ -21,15 +21,28 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx$/i,
+                test: /\.ts$/i,
                 use: [
                     "ts-loader",
-                    "style-loader",
-                    "css-loader",
-                    "sass-loader",
-                    "babel-loader",
                 ],
             },
+
+            {
+                test: /\.scss$/,
+                use: [
+                    // "style-loader",
+                    "css-loader",
+                    // "sass-loader",
+                ],
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    "style-loader",
+                ],
+
+            }
+
         ],
     },
     plugins: [
@@ -44,6 +57,7 @@ module.exports = {
                 {from: "./src/webfonts", to: "webfonts"},
                 {from: "./src/static/images", to: "images"},
                 {from: "./src/plugins/font-awesome/css", to: "css"},
+                {from: "./src/styles", to: "styles"},
                 {from: "./src/plugins/fonts", to: "css"},
                 {from: "./node_modules/bootstrap/dist/css/bootstrap.css", to: "css"},
                 {from: "./node_modules/bootstrap-icons/font/bootstrap-icons.min.css", to: "css"},
@@ -55,11 +69,13 @@ module.exports = {
 
     ],
     resolve: {
-        extensions: [".ts", ".tsx", ".js"],
-        extensionAlias: {
-            ".js": [".js", ".ts"],
-            ".cjs": [".cjs", ".cts"],
-            ".mjs": [".mjs", ".mts"]
-        }        // alias: { 'chart.js': 'chart.js/dist/chart.js', 'chart.js/auto': 'chart.js/dist/chart.js', 'chart.js/plugins': 'chart.js/dist/plugins', 'chart.js/scales': 'chart.js/dist/scales', },
+        extensions: [".ts", ".js"],
+        // extensionAlias: {
+        //     ".js": [".js", ".ts"],
+        //     ".cjs": [".cjs", ".cts"],
+        //     ".mjs": [".mjs", ".mts"],
+        // }
+        // // alias: { 'chart.js': 'chart.js/dist/chart.js', 'chart.js/auto': 'chart.js/dist/chart.js', 'chart.js/plugins': 'chart.js/dist/plugins', 'chart.js/scales': 'chart.js/dist/scales', },
          },
+    // alias: { 'chart.js': 'chart.js/dist/chart.js', 'chart.js/auto': 'chart.js/dist/chart.js', 'chart.js/plugins': 'chart.js/dist/plugins', 'chart.js/scales': 'chart.js/dist/scales', }
 }

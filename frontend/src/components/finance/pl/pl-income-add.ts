@@ -115,14 +115,10 @@ export class PlIncomeAdd {
 
     public async  loadData():Promise<void> {
         const com_prm: CommonParams | undefined = this.commonParams;
-        if (!com_prm) {
-            return;
-        }
-        if (!com_prm.hasOwnProperty("categories")) {
-            return;
-        }
-        if (await com_prm.reloadCostCategories()) {
-            await this.showCategories(com_prm.categories.incomeCategories);
+        if (!com_prm) { return; }
+        if (!com_prm.hasOwnProperty("categories")) {  return;  }
+        if (await com_prm.reloadIncomeCategories()) {
+             this.showCategories(com_prm.categories.incomeCategories);
         }
     }
 }

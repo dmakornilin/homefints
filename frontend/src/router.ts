@@ -35,161 +35,21 @@ export class Router {
 
         this.defineRouters();
 
-        // this.routes = [
-        //     {
-        //         route: '/',
-        //         title: 'Дашбоард',
-        //         filePathTemplate: '/templates/pages/dashboard.html',
-        //         useLayout: '/templates/layout.html',
-        //         load: () => {
-        //             new Dashboard(this.openNewRoute.bind(this), this.commonParams);
-        //         },
-        //     },
-        //     {
-        //         route: '/404',
-        //         title: 'Страница не найдена',
-        //         filePathTemplate: '/templates/pages/404.html',
-        //         useLayout: null,
-        //     },
-        //     {
-        //         route: '/login',
-        //         title: 'Авторизация',
-        //         filePathTemplate: '/templates/pages/auth/login.html',
-        //         useLayout: null,
-        //         load: () => {
-        //              new Login(this.openNewRoute.bind(this));
-        //         },
-        //     },
-        //     {
-        //         route: '/logout',
-        //         title: null,
-        //         filePathTemplate: null,
-        //         useLayout: null,
-        //         load: () => {
-        //             new Logout(this.openNewRoute.bind(this));
-        //         },
-        //     },
-        //     {
-        //         route: '/sign-up',
-        //         title: 'Регистрация',
-        //         filePathTemplate: '/templates/pages/auth/sign-up.html',
-        //         useLayout: null,
-        //         load: () => {
-        //             const signUpApp = new SignUp(this.openNewRoute.bind(this));
-        //         },
-        //     },
-        //     {
-        //         route: '/finance-pl',
-        //         title: 'Доходы и расходы',
-        //         filePathTemplate: '/templates/pages/finance/pl/show.html',
-        //         useLayout: '/templates/layout.html',
-        //         load: () => {
-        //             new FinancePl(this.openNewRoute.bind(this), this.commonParams);
-        //         },
-        //     },
-        //     {
-        //         route: '/finance-pl/add-income',
-        //         title: 'Создание дохода',
-        //         filePathTemplate: '/templates/pages/finance/pl/add-income.html',
-        //         useLayout: '/templates/layout.html',
-        //         load: () => {
-        //             new PlIncomeAdd(this.openNewRoute.bind(this), this.commonParams);
-        //         },
-        //     },
-        //     {
-        //         route: '/finance-pl/edit-income',
-        //         title: 'Редактирование дохода',
-        //         filePathTemplate: '/templates/pages/finance/pl/edit-income.html',
-        //         useLayout: '/templates/layout.html',
-        //         load: () => {
-        //             new PlIncomeEdit(this.openNewRoute.bind(this), this.commonParams);
-        //         },
-        //     },
-        //     {
-        //         route: '/finance-pl/add-cost',
-        //         title: 'Создание расхода',
-        //         filePathTemplate: '/templates/pages/finance/pl/add-cost.html',
-        //         useLayout: '/templates/layout.html',
-        //         load: () => {
-        //             new PlCostAdd(this.openNewRoute.bind(this), this.commonParams);
-        //         },
-        //     },
-        //     {
-        //         route: '/finance-pl/edit-cost',
-        //         title: 'Редактирование расхода',
-        //         filePathTemplate: '/templates/pages/finance/pl/edit-cost.html',
-        //         useLayout: '/templates/layout.html',
-        //         load: () => {
-        //             new PlCostEdit(this.openNewRoute.bind(this), this.commonParams);
-        //         },
-        //     },
-        //     {
-        //         route: '/incoms',
-        //         title: 'Доходы',
-        //         filePathTemplate: '/templates/pages/finance/income/category_show.html',
-        //         useLayout: '/templates/layout.html',
-        //         load: () => {
-        //             new Incoms(this.openNewRoute.bind(this), this.commonParams);
-        //         },
-        //     },
-        //     {
-        //         route: '/income/add',
-        //         title: 'Создание категории доходов',
-        //         filePathTemplate: '/templates/pages/finance/income/add.html',
-        //         useLayout: '/templates/layout.html',
-        //         load: () => {
-        //             new AddIncomeCategory(this.openNewRoute.bind(this), this.commonParams);
-        //         },
-        //     },
-        //     {
-        //         route: '/income/edit',
-        //         title: 'Редактирование категории доходов',
-        //         filePathTemplate: '/templates/pages/finance/income/edit.html',
-        //         useLayout: '/templates/layout.html',
-        //         load: () => {
-        //             new EditIncomeCategory(this.openNewRoute.bind(this), this.commonParams);
-        //         },
-        //     },
-        //     {
-        //         route: '/costs',
-        //         title: 'Расходы',
-        //         filePathTemplate: '/templates/pages/finance/cost/category_show.html',
-        //         useLayout: '/templates/layout.html',
-        //         load: () => {
-        //             new Costs(this.openNewRoute.bind(this), this.commonParams);
-        //         },
-        //     },
-        //     {
-        //         route: '/cost/add',
-        //         title: 'Добавление категории расходов',
-        //         filePathTemplate: '/templates/pages/finance/cost/add.html',
-        //         useLayout: '/templates/layout.html',
-        //         load: () => {
-        //             new AddCostCategory(this.openNewRoute.bind(this), this.commonParams);
-        //         },
-        //     },
-        //     {
-        //         route: '/cost/edit',
-        //         title: 'Редактирование категории расходов',
-        //         filePathTemplate: '/templates/pages/finance/cost/edit.html',
-        //         useLayout: '/templates/layout.html',
-        //         load: () => {
-        //             new EditCostCategory(this.openNewRoute.bind(this), this.commonParams);
-        //         },
-        //     },
-        // ]
     }
 
     private defineRouters() {
-        let rt: RouteElement = this.routes.addRoute('/', () => {
+
+        let rt = this.routes.addRoute('/404', null, null);
+        rt.title = 'Страница не найдена';
+        rt.filePathTemplate = '/templates/pages/404.html';
+
+        rt = this.routes.addRoute('/', () => {
             new Dashboard(this.openNewRoute.bind(this), this.commonParams);
         }, null);
         rt.title = 'Дашбоард';
         rt.filePathTemplate = '/templates/pages/dashboard.html';
         rt.useLayout = '/templates/layout.html';
-        rt = this.routes.addRoute('/404', null, null);
-        rt.title = 'Страница не найдена';
-        rt.filePathTemplate = '/templates/pages/404.html';
+
 
         rt = this.routes.addRoute('/login', () => {
             new Login(this.openNewRoute.bind(this));
@@ -283,9 +143,6 @@ export class Router {
         rt.title = 'Редактирование категории расходов';
         rt.filePathTemplate = '/templates/pages/finance/cost/edit.html';
         rt.useLayout = '/templates/layout.html';
-
-
-
     };
 
 
@@ -302,20 +159,27 @@ export class Router {
         await this.activateRoute(null, currentRoute);
     }
 
-    private async clickHandler(e: any): Promise<void> {
-        let element: HTMLElement | null = null;
-        if (e.target.nodeName === 'BUTTON') {
+    private async clickHandler(e: PointerEvent): Promise<void> {
+        let element: HTMLLinkElement | null = null;
+        if ((e.target as HTMLElement).nodeName === 'BUTTON') {
             e.preventDefault();
             return;
         }
 
-        if (e.target.nodeName === 'A') {
-            element = e.target;
+        if ((e.target as HTMLElement).nodeName === 'A') {
+            element = e.target as HTMLLinkElement;
         } else {
-            if (e.target.parentNode.nodeName === 'A') {
-                element = e.target.parentNode;
+            if ((e.target as HTMLLinkElement).hasOwnProperty('parentNode')) {
+                let e2: ParentNode | null = (e.target as HTMLLinkElement).parentNode;
+                if (e2) {
+                    if (e2.nodeName === 'A') {
+                        element = (e.target as HTMLLinkElement).parentNode as HTMLLinkElement;
+                    }
+                }
             }
         }
+
+
         if (element) {
             e.preventDefault();
             const currentRoute = window.location.pathname;
@@ -411,7 +275,7 @@ export class Router {
     }
 
     async iniLoad() {
-        if (this.commonParams && this.commonParams.navElements) {
+        if (this.commonParams && this.commonParams.navElements && this.commonParams.navElements) {
             this.commonParams.navElements.ctgNavElement = document.getElementById('menu-category');
             this.commonParams.navElements.ctgAccordionElement = document.getElementById('item-1');
             this.commonParams.navElements.ctgIncomeNavElement = document.getElementById('list-incoms');
@@ -419,16 +283,11 @@ export class Router {
             this.commonParams.navElements.ctgCostNavElement = document.getElementById('list-costs');
             this.commonParams.navElements.plNavElement = document.getElementById('finance-pl');
             this.commonParams.navElements.startNavElement = document.getElementById('start-choice');
+            this.commonParams.loginElement= document.getElementById('login-name');
             this.commonParams.sbrosChoiceNav();
             this.commonParams.refreshUserInfo();
             this.commonParams.balanceElm = document.getElementById('balance-amount');
 
-            if (this.commonParams.loginInfo.fio) {
-                const elm: HTMLElement | null = document.getElementById('login');
-                if (elm) {
-                    elm.innerText = this.commonParams.loginInfo.fio;
-                }
-            }
             this.commonParams.reshowBalance();
         }
     }

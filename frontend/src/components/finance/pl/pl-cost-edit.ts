@@ -36,6 +36,14 @@ export class PlCostEdit {
     constructor(openNewRoute:NewRouteFunction, commonParams:CommonParams | undefined) {
         this.openNewRoute = openNewRoute;
         this.commonParams = commonParams;
+
+if (!this.commonParams) return;
+        const url = new URL(location.href);
+        const s2:string | null =url.searchParams.get('id');
+        if (!s2) return;
+        this.commonParams.transId=parseInt(s2);
+        this.commonParams.choiceTransId=parseInt(s2);
+
         this.initial();
 
         let elm: HTMLElement | null = document.getElementById("categ-select");
@@ -66,6 +74,9 @@ export class PlCostEdit {
         if (!elm) return
         elm.addEventListener("click", this.updateTransact.bind(this));
         this.upd_data.type=CategoryTypes.cost;
+
+        // this.initial();
+
     }
 
 
@@ -76,10 +87,13 @@ export class PlCostEdit {
 
         let result:boolean = false;
         this.upd_data.date = this.dateElement.value;
-           const dt:Date |null = (com_prm as CommonParams).tansIdData.date;
+
+
+        const dt:Date |null = (com_prm as CommonParams).tansIdData.date;
            if (!dt) return false;
-           let sd:DateStrVal = DateElements.dateToValText(dt);
-        if (this.dateElement.value !== sd.val) result = true;
+        if (this.dateElement.value !== dt.toString()) result = true;
+
+
 
         let new_ktg:number = parseInt(this.categoryElement.value);
         this.upd_data.category_id = new_ktg;
@@ -98,15 +112,13 @@ export class PlCostEdit {
         return result;
     }
 
-    public async updateTransact():Promise<void>    {
+    public async updateTransact(e:PointerEvent):Promise<void>    {
         if (!this.commonErrorElement || !this.validations || !this.commonParams) return;
         this.commonErrorElement.classList.remove('is-invalid');
         if (ValidationUtils.validateForm(this.validations)) {
             if (this.checkParamsToUpdate()) {
-                // console.log(this.upd_data);
                 let trans_id:number|null =this.commonParams.transId;
                 if (!trans_id) return;
-                // console.log(trans_id);
                 const result:DefaultResponseType = await HttpUtils.request('/operations/' + trans_id, 'PUT', true, this.upd_data);
                 if (result.error) {
                     this.commonErrorElement.classList.add('is-invalid');
@@ -144,8 +156,8 @@ export class PlCostEdit {
 
         const dt:Date |null = (this.commonParams as CommonParams).tansIdData.date;
         if (!dt) return;
-        let sd:DateStrVal = DateElements.dateToValText(dt);
-        if (sd.val)  this.dateElement.value = sd.val;
+        this.dateElement.value = dt.toString();
+
            const rr:number|null = this.commonParams.tansIdData.amount;
            if (rr)  this.amountElement.value = rr.toString();
           ss = this.commonParams.tansIdData.comment;

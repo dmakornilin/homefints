@@ -19,25 +19,26 @@ export class EditCostCategory {
         if (!AuthUtils.isLogin()) {
             this.openNewRoute('/login');
         } else {
+            this.commonParams = commonParams;
               let elm: HTMLElement | null = null;
               elm =document.getElementById("add-name");
               if (!elm) {return}
             this.categoryName = elm as HTMLInputElement;
-            this.commonParams = commonParams;
+
             this.initial();
             this.validations = [
                 {element: this.categoryName}
             ]
             elm=document.getElementById("update-category");
-            if (elm) { elm.addEventListener("click", this.addCategory.bind(this)); }
+            if (elm) { elm.addEventListener("click", this.editCategory.bind(this)); }
         }
     }
 
-    private async addCategory():Promise<void> {
+    private async editCategory(e:PointerEvent):Promise<void> {
         if (!this.validations || !this.categoryName || !this.commonParams) {return}
-        if (ValidationUtils.validateForm(this.validations)) {
-            // console.log('Прошел валидацию');
+
             if (ValidationUtils.validateForm(this.validations)) {
+                console.log('прошел');
                 const result:DefaultResponseType = await HttpUtils.request('/categories/expense/' + this.commonParams.currents.currentCostCtg, 'PUT', true,
                     {
                         title: this.categoryName.value,
@@ -48,21 +49,23 @@ export class EditCostCategory {
                 } else {
                     this.openNewRoute('/costs');
                 }
-            }
         }
     }
 
     private initial():void {
+
         if (!this.categoryName) {return;}
         const com_prm:CommonParams | undefined= this.commonParams;
         if (!com_prm) { return; }
         if (!com_prm.hasOwnProperty("navElements")) { return; }
+
         const navs: NaveElmType | null = com_prm.navElements;
         if (!navs) { return; }
           const cost_ctg:string |null= com_prm.currents.costCategory;
           if (!cost_ctg) { return; }
         (this.categoryName as HTMLInputElement).value = cost_ctg;
-            com_prm.setCtgCost();
+
+        com_prm.setCtgCost();
            (navs.incomeNavBottom as HTMLElement).dispatchEvent(new Event('click'))
     }
 }

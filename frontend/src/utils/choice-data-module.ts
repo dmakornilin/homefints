@@ -107,11 +107,13 @@ export class ChoiceDataModule {
     public setChoiceFlag(): void {
         this.sbrosChoce();
         this.sbrosValidationFlag();
-        if (!this.flag) {
+        if (this.flag===null  ) {
             return
         }
 
-        let tek_flag: ElmDtFlags = this.flag;
+        let tek_flag : ElmDtFlags  = this.flag;
+
+
         if ((tek_flag as ElmDtFlags) === ElmDtFlags.today) {
             if (this.flg0Element) {
                 this.flg0Element.classList.add('btn-secondary');
@@ -165,7 +167,7 @@ export class ChoiceDataModule {
     }
 
     public async reloadOperations(): Promise<boolean> {
-        if (!this.flag) {
+        if (this.flag===null) {
             return false
         }
         let tek_flag: ElmDtFlags = this.flag;
@@ -200,7 +202,7 @@ export class ChoiceDataModule {
                 }
             }
             if ((tek_flag as ElmDtFlags) === ElmDtFlags.today) {
-                const s0: string | null = DateElements.current_date_iso();
+                let s0: string | null = DateElements.current_date_rus();
                 if (s0) {
                     const result = await HttpUtils.request('/operations/?period=interval&dateFrom=' + s0 + '&dateTo=' + s0);
                     if (!result.error && result.response) {
@@ -212,10 +214,8 @@ export class ChoiceDataModule {
             if ((tek_flag as ElmDtFlags) === ElmDtFlags.period) {
                 if (this.dFromElement && this.dToElement) {
                     let s0: string | null = this.dFromElement.value;
-                    if (s0) { s0 = DateElements.stringRusdtTovalDt(s0);  }
                     if (s0) {
                         let s1: string | null = this.dToElement.value;
-                        if (s1) {  s1 = DateElements.stringRusdtTovalDt(s1); }
                         if (s1) {
                             const result = await HttpUtils.request('/operations/?period=interval&dateFrom=' + s0 + '&dateTo=' + s1);
                             if (!result.error && result.response) { this.refreshTransact(result.response);  return true; }

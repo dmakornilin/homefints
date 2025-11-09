@@ -4,7 +4,6 @@ import {CommonParams} from "../utils/common_params";
 import {ChartParams, PieChartRecord} from "../types/data-prm.types/pie-chart.type";
 import type {ChoiceDataModule} from "../utils/choice-data-module";
 import {ElmDtFlags} from "../types/data-prm.types/dt-choice.types";
-// import React from "react";
 
 export class Dashboard {
     private readonly openNewRoute: NewRouteFunction;
@@ -48,8 +47,8 @@ export class Dashboard {
             this.commonParams.glDataModule.initial();
 
             this.pieCharts = new ChartParams(document.getElementById('income-pie'),this.income,document.getElementById('cost-pie'),this.cost);
-            this.iniFlg = false;
 
+            this.iniFlg = false;
             this.initial();
         }
 
@@ -57,8 +56,10 @@ export class Dashboard {
 
 
     async setChoiceFlag(event:any) {
+
         if (!this.pieCharts || !this.commonParams) return;
-        const param:ChoiceDataModule = this.commonParams.transactDataModule;
+        if (!this.commonParams) return
+        const param:ChoiceDataModule  = (this.commonParams).transactDataModule;
         const ss:string|null =(event.srcElement.getAttribute('choice-flag'));
            if (!ss) return;
         const flg = parseInt(ss);
@@ -117,7 +118,6 @@ export class Dashboard {
             this.commonParams.transactDataModule.dToElement = elm as HTMLInputElement;
             this.commonParams.transactDataModule.is_dtl = true;
             await this.commonParams.transactDataModule.initial();
-            // await this.iniPi().then();
             this.iniFlg = true;
         }
     }

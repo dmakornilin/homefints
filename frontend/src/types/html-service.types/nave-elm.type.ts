@@ -1,9 +1,19 @@
-export type NaveElmType = {
-    startNavElement: HTMLElement |  null,
-    plNavElement:  HTMLElement |  null,
-    ctgAccordionElement:  HTMLElement |  null,
-    ctgNavElement:  HTMLElement |  null,
-    ctgIncomeNavElement:  HTMLElement |  null,
-    ctgCostNavElement:  HTMLElement |  null,
-    incomeNavBottom:  HTMLElement |  null,
+export class NaveElmType {
+    public startNavElement: HTMLElement |  null;
+    public plNavElement:  HTMLElement |  null;
+    public ctgAccordionElement:  HTMLElement |  null;
+    public ctgNavElement:  HTMLElement |  null;
+    public ctgIncomeNavElement:  HTMLElement |  null;
+    public ctgCostNavElement:  HTMLElement |  null;
+    public incomeNavBottom:  HTMLElement |  null;
+
+    constructor() {
+        this.startNavElement =  null;
+        this.plNavElement= null;
+        this.ctgAccordionElement=null;
+        this.ctgNavElement= null;
+        this.ctgIncomeNavElement= null;
+        this.ctgCostNavElement= null;
+        this.incomeNavBottom= null;
+    }
 }

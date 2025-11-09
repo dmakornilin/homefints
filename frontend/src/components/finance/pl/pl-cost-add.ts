@@ -116,7 +116,7 @@ export class PlCostAdd {
         if (!com_prm) { return; }
         if (!com_prm.hasOwnProperty("categories")) { return; }
         if (await com_prm.reloadCostCategories()) {
-            await this.showCategories(com_prm.categories.costCategories);
+            this.showCategories(com_prm.categories.costCategories);
         }
     }
 }

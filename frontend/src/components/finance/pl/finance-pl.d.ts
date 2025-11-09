@@ -6,9 +6,9 @@ export declare class FinancePl {
     private readonly tableElement;
     private readonly removeBtnElement;
     constructor(openNewRoute: NewRouteFunction, commonParams: CommonParams | undefined);
-    removeTransId(event: Event): Promise<void>;
+    removeTransId(event: PointerEvent): Promise<void>;
     initial(): void;
-    setChoiceFlag(element: any): Promise<void>;
+    setChoiceFlag(e: PointerEvent): Promise<void>;
     private toChoiceTransAct;
     private showOperations;
 }

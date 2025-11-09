@@ -1,5 +1,4 @@
-import {Chart,type ChartDataset} from '../../../node_modules/chart.js/dist/types';
-
+import {Chart,PieController, ArcElement,Tooltip, Legend} from "chart.js";
 
 export class PieChartRecord {
     public group: string;
@@ -12,54 +11,60 @@ export class PieChartRecord {
 
 
 export class ChartParams {
-    public incPie: Chart;
-    public cstPie: Chart;
-    private readonly incomeElement: any;
-    private readonly costElement: any;
+    public incPie: Chart | null =null;
+    public cstPie: Chart| null =null;
+    private readonly incomeElement: HTMLElement | null =null;
 
-    public incomeData: PieChartRecord[];
-    public costData: PieChartRecord[];
+    public incomeData: PieChartRecord[] | null = null;
+    public costData: PieChartRecord[] | null = null;
 
-    constructor(incElm: any,incomeData: PieChartRecord[], cstElm: any,costData: PieChartRecord[]) {
+    constructor(incElm: HTMLElement | null,incomeData: PieChartRecord[], cstElm: HTMLElement | null,costData: PieChartRecord[]) {
+      if (!incElm) {return;}
+      if (!cstElm) {return;}
+      if (!incomeData || !costData) {return;}
+
         this.incomeElement = incElm;
-        this.costElement = cstElm;
         this.incomeData = incomeData;
         this.costData = costData;
+         Chart.register(PieController,ArcElement,Tooltip,Legend);
 
 
-        this.incPie = new Chart(
-            this.incomeElement,
-            {
-                type: 'pie',
-                data: {
-                    labels: this.incomeData.map( (row:PieChartRecord) => row.group),
-                    datasets: [
-                        {
-                            label: '',
-                            data: this.incomeData.map((row:PieChartRecord) => row.amount),
-                            backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"]
-                        }
-                    ]
-                }
-            }
-        );
+         const dataIncome = {
+             label: '',
+             datasets: [{
+                 label: '',
+                 data: this.incomeData.map((row:PieChartRecord) => row.amount),
+                 backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"]
+             }]
+         }
 
-        this.cstPie = new Chart(
-            this.costElement,
-            {
-                type: 'pie',
-                data: {
-                    labels: this.costData.map((row:PieChartRecord)  => row.group),
-                    datasets: [
-                        {
-                            label: '',
-                            data: this.costData.map((row:PieChartRecord)  => row.amount),
-                            backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"]
-                        }
-                    ]
-                }
-            }
-        );
+         const dataCost = {
+             label: '',
+             datasets: [{
+                 label: '',
+                 data: this.costData.map((row:PieChartRecord) => row.amount),
+                 backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"]
+             }]
+         }
+
+         const configIncome = {
+             type: 'pie' as const,
+             data: dataIncome,
+             options: {
+                 responsive: true,
+             }
+         }
+
+         const configCost = {
+             type: 'pie' as const,
+             data: dataCost,
+             options: {
+                 responsive: true,
+             }
+         }
+        this.incPie= new Chart(incElm as HTMLCanvasElement,configIncome);
+        this.cstPie= new Chart(cstElm as HTMLCanvasElement,configCost);
+
     }
 
     public removeChartData(ch:Chart) {
@@ -79,31 +84,34 @@ export class ChartParams {
 
 
     public updateData() {
-        if (this.incPie) this.removeChartData(this.incPie);
-        for (let ii = 0; ii < this.incomeData.length; ii++) {
-        //     this.pieAddData(this.pieCharts.incPie, this.income[ii].group, this.income[ii].amount);
+        if (!this.incomeData || !this.costData) return;
+        if (!this.incPie || !this.cstPie) return;
+
+
+        this.removeChartData(this.incPie);
+        for (let ii:number = 0; ii < this.incomeData.length; ii++) {
+            let current_income = (this.incomeData[ii] as PieChartRecord);
             if (this.incPie.data.labels) {
-                this.incPie.data.labels.push((this.incomeData[ii] as PieChartRecord).group);
-                    this.incPie.data.datasets.forEach((dataset:ChartDataset) => {
-                        dataset.data.push((this.incomeData[ii] as PieChartRecord).amount);
+                this.incPie.data.labels.push(current_income.group);
+                    this.incPie.data.datasets.forEach((dataset) => {
+                           dataset.data.push(current_income.amount);
                     });
 
             }
         }
         this.incPie.update();
-
         if (this.cstPie) this.removeChartData(this.cstPie);
-        for (let ii = 0; ii < this.costData.length; ii++) {
+        for (let ii:number = 0; ii < this.costData.length; ii++) {
+            let current_cost = (this.costData[ii] as PieChartRecord);
             if (this.cstPie.data.labels) {
-                this.cstPie.data.labels.push((this.costData[ii] as PieChartRecord).group);
-                    this.cstPie.data.datasets.forEach((dataset:ChartDataset) => {
-                        dataset.data.push((this.costData[ii] as PieChartRecord).amount);
+                this.cstPie.data.labels.push(current_cost.group);
+                    this.cstPie.data.datasets.forEach((dataset) => {
+                           dataset.data.push(current_cost.amount);
                     });
 
             }
         }
         this.cstPie.update();
-
     }
 
 }

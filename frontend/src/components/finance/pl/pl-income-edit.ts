@@ -27,6 +27,14 @@ export class PlIncomeEdit {
     constructor(openNewRoute:NewRouteFunction, commonParams:CommonParams | undefined) {
         this.openNewRoute = openNewRoute;
         this.commonParams = commonParams;
+       if (!this.commonParams) {return}
+
+        const url = new URL(location.href);
+        const s2:string | null =url.searchParams.get('id');
+        if (!s2) return;
+        this.commonParams.transId=parseInt(s2);
+        this.commonParams.choiceTransId=parseInt(s2);
+
         this.initial();
 
         let elm: HTMLElement | null =document.getElementById("categ-select");
@@ -68,10 +76,11 @@ export class PlIncomeEdit {
 
         let result:boolean = false;
         this.upd_data.date = this.dateElement.value;
+
+
         const dt:Date |null = (com_prm as CommonParams).tansIdData.date;
         if (!dt) return false;
-        let sd:DateStrVal = DateElements.dateToValText(dt);
-        if (this.dateElement.value !== sd.val) result = true;
+        if (this.dateElement.value !== dt.toString()) result = true;
 
         let new_ktg:number = parseInt(this.categoryElement.value);
         this.upd_data.category_id = new_ktg;
@@ -119,8 +128,7 @@ export class PlIncomeEdit {
         let ss:string|null;
         const dt:Date |null = (this.commonParams as CommonParams).tansIdData.date;
         if (!dt) return;
-        let sd:DateStrVal = DateElements.dateToValText(dt);
-        if (sd.val)  this.dateElement.value = sd.val;
+          this.dateElement.value = dt.toString();
         const rr:number|null = this.commonParams.tansIdData.amount;
         if (rr)  this.amountElement.value = rr.toString();
         ss = this.commonParams.tansIdData.comment;

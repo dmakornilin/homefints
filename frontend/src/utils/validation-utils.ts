@@ -34,13 +34,11 @@ export class ValidationUtils {
 
 
     static validateField(element: HTMLInputElement, options: ValidationOption | null): boolean {
-        let is_value: boolean = false;
-        if (element.value) {
-            is_value = true;
-        }
+        if (!element.value) { element.classList.add('is-invalid'); return false; }
+        if (!options) { element.classList.remove('is-invalid'); return true; }
+
         let result: boolean = false;
-        if (options) {
-            if (options.hasOwnProperty('pattern') && is_value) {
+            if (options.hasOwnProperty('pattern') ) {
                 if (element.value && element.value.match(options.pattern)) {
                     result = true
                 }
@@ -48,8 +46,8 @@ export class ValidationUtils {
                 if (element.value && element.value === options.compareTo) {
                     result = true
                 }
-            }
         }
+
         if (result) {
             element.classList.remove('is-invalid');
         } else {

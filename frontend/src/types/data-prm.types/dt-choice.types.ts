@@ -34,8 +34,6 @@ export type CtgListElement ={
     title: string,
 }
 
-// export type CtgListArray = CtgListElement[];
-
 export class CategoriesClass  {
     public incomeCategories: CtgListElement[] =[];
     public costCategories: CtgListElement[] =[];

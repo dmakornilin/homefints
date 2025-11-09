@@ -1,13 +1,15 @@
 import { ChoiceDataModule } from "./choice-data-module";
 import { type UserInfo } from "../types/util-types/user-info.type";
-import type { NaveElmType } from "../types/html-service.types/nave-elm.type";
+import { NaveElmType } from "../types/html-service.types/nave-elm.type";
 import { CategoriesClass, type DataTransElement } from "../types/data-prm.types/dt-choice.types";
 import type { CurrentChoiceCtg } from "../types/html-service.types/current-choice.type";
 import type { NewRouteFunction } from "../types/util-types/new-route.type";
 export declare class CommonParams {
+    choiceTransId: number | null;
     glDataModule: ChoiceDataModule;
     transactDataModule: ChoiceDataModule;
     loginInfo: UserInfo;
+    loginElement: HTMLElement | null;
     balanceElm: HTMLElement | null;
     navElements: NaveElmType | null;
     transId: number | null;

@@ -21,9 +21,14 @@ export class DateElements {
         return result;
     }
 
-    public static current_date_rus(): string {
-        let dt: Date = new Date();
-        return dt.toLocaleDateString('ru-RU');
+    public static current_date_rus(): string | null {
+        let sd:string= (new Date()).toLocaleDateString('ru-RU');
+        const parts: string[] = sd.split(".");
+        let result: string | null = null;
+        if (parts.length == 3) {
+            result = parts[2] + '-' + parts[1] + '-' + parts[0];
+            return result;
+        } else return null;
     }
 
     public static current_week_iso(): string | null {

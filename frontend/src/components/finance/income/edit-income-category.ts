@@ -30,10 +30,10 @@ export class EditIncomeCategory {
             {element: this.categoryName}
         ]
            elm=document.getElementById("update-category");
-        if (elm)  { elm.addEventListener("click", this.addCategory.bind(this)); }
+        if (elm)  { elm.addEventListener("click", this.editCategory.bind(this)); }
     }
 
-    private async addCategory():Promise<void> {
+    private async editCategory():Promise<void> {
         if (!this.validations || !this.categoryName || !this.commonParams) {return}
         if (ValidationUtils.validateForm(this.validations)) {
             const result:DefaultResponseType = await HttpUtils.request('/categories/income/' + this.commonParams.currents.currentIncomeCtg, 'PUT', true,

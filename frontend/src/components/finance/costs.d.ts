@@ -8,8 +8,8 @@ export declare class Costs {
     private initial;
     private showCategories;
     private toDeleteCategory;
-    choiceDelCategory(e: any): Promise<void>;
-    toEditCategory(e: any): void;
+    choiceDelCategory(e: PointerEvent): Promise<void>;
+    toEditCategory(e: PointerEvent): void;
     loadData(): Promise<void>;
 }
 //# sourceMappingURL=costs.d.ts.map

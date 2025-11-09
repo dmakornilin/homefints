@@ -2,7 +2,7 @@ import {HttpUtils} from "./http-utils";
 import {ChoiceDataModule} from "./choice-data-module";
 import {NumberUtils} from "./number-utils";
 import {AuthInfoKey, type UserInfo} from "../types/util-types/user-info.type";
-import type {NaveElmType} from "../types/html-service.types/nave-elm.type";
+import {NaveElmType} from "../types/html-service.types/nave-elm.type";
 import {
     CategoriesClass,
     type CtgListElement,
@@ -16,12 +16,15 @@ import type {NewRouteFunction} from "../types/util-types/new-route.type";
 
 
 export class CommonParams {
+
+    public choiceTransId:number | null;
     public glDataModule: ChoiceDataModule = new ChoiceDataModule();
     public transactDataModule: ChoiceDataModule = new ChoiceDataModule();
     public loginInfo: UserInfo = {};
+    public loginElement:HTMLElement | null = null;
     public balanceElm: HTMLElement | null = null;
-    public navElements: NaveElmType | null = null;
-    public transId: number | null = null;
+    public navElements: NaveElmType | null;
+    public transId: number | null ;
     public kol: number | null = null;
     public tansIdData: DataTransElement = {id: null, date: null, amount: null, category: null, comment: null, type: null,  category_id: null };
     public categories: CategoriesClass = new CategoriesClass();
@@ -30,6 +33,9 @@ export class CommonParams {
     public currents: CurrentChoiceCtg = {currentCostCtg: null, costCategory:  null,  currentIncomeCtg:  null,  incomeCategory:  null  }
     constructor(openNewRoute:NewRouteFunction) {
         this.openNewRoute = openNewRoute;
+        this.navElements= new NaveElmType();
+        this.transId = null;
+        this.choiceTransId =null;
     }
 
 
@@ -118,15 +124,17 @@ export class CommonParams {
         const current_user:string | null = localStorage.getItem(AuthInfoKey.userInfo);
         if (current_user) {
             const user_info:UserInfo = JSON.parse(current_user);
-
             if (user_info && user_info.hasOwnProperty('id') && user_info.hasOwnProperty('name') && user_info.hasOwnProperty('email') && user_info.hasOwnProperty('lastName')) {
                 (this.loginInfo as UserInfo).id = user_info.id;
                 (this.loginInfo as UserInfo).email = user_info.email;
                 (this.loginInfo as UserInfo).name = user_info.name;
                 (this.loginInfo  as UserInfo).lastName = user_info.lastName;
                 (this.loginInfo as UserInfo).fio = user_info.name + ' ' + user_info.lastName;
+
+                if (this.loginElement) {
+                    this.loginElement.innerText = user_info.name + ' ' + user_info.lastName;
+                }
             }
-            // this.loginInfo.fio ='Роман Чернов';
         }
     }
 

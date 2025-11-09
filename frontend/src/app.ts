@@ -1,8 +1,7 @@
-// import "./styles/styles.scss";
-import {Router} from "router";
+import {Router} from "./router";
 
  class App {
-  private router:Router;
+    router:Router;
 
     constructor() {
       this.router= new Router();

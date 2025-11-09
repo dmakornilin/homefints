@@ -13,7 +13,7 @@ export declare class PlCostEdit {
     upd_data: CategorySwodRecord;
     constructor(openNewRoute: NewRouteFunction, commonParams: CommonParams | undefined);
     private checkParamsToUpdate;
-    updateTransact(): Promise<void>;
+    updateTransact(e: PointerEvent): Promise<void>;
     private showCategories;
     showParams(): void;
     initial(): Promise<void>;

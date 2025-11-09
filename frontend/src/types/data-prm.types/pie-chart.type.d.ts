@@ -1,17 +1,16 @@
-import { Chart } from '../../../node_modules/chart.js/dist/types';
+import { Chart } from "chart.js";
 export declare class PieChartRecord {
     group: string;
     amount: number;
     constructor(group: string, amount: number);
 }
 export declare class ChartParams {
-    incPie: Chart;
-    cstPie: Chart;
+    incPie: Chart | null;
+    cstPie: Chart | null;
     private readonly incomeElement;
-    private readonly costElement;
-    incomeData: PieChartRecord[];
-    costData: PieChartRecord[];
-    constructor(incElm: any, incomeData: PieChartRecord[], cstElm: any, costData: PieChartRecord[]);
+    incomeData: PieChartRecord[] | null;
+    costData: PieChartRecord[] | null;
+    constructor(incElm: HTMLElement | null, incomeData: PieChartRecord[], cstElm: HTMLElement | null, costData: PieChartRecord[]);
     removeChartData(ch: Chart): void;
     removeData(): void;
     updateData(): void;

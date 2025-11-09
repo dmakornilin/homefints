@@ -6,7 +6,7 @@ export declare class EditCostCategory {
     private readonly categoryName;
     private readonly validations;
     constructor(openNewRoute: NewRouteFunction, commonParams: CommonParams | undefined);
-    private addCategory;
+    private editCategory;
     private initial;
 }
 //# sourceMappingURL=edit-cost-category.d.ts.map

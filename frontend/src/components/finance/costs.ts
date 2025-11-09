@@ -99,28 +99,39 @@ export class Costs {
     }
 
 
-    private toDeleteCategory(e:any):void {
-        const choiceCtg=e.srcElement.getAttribute('choice-ctg-id');
-        const choiceCtgName=e.srcElement.getAttribute('choice-ctg-name');
+    private toDeleteCategory(e:PointerEvent):void {
+        // @ts-ignore
+        const choiceCtg:string | undefined = (e.srcElement as HTMLElement).getAttribute('choice-ctg-id');
+            if (!choiceCtg) return;
+        // @ts-ignore
+        const choiceCtgName:string | undefined = (e.srcElement as HTMLElement).getAttribute('choice-ctg-name');
+           if (!choiceCtgName) return;
         if (choiceCtg && this.commonParams) {
-            this.commonParams.currents.currentCostCtg = choiceCtg;
+            this.commonParams.currents.currentCostCtg =  parseInt(choiceCtg);
             this.commonParams.currents.costCategory = choiceCtgName;
         }
     }
 
-    async choiceDelCategory(e:any):Promise<void> {
+    async choiceDelCategory(e:PointerEvent):Promise<void> {
         if (this.commonParams) {
             const result:DefaultResponseType = await HttpUtils.request('/categories/expense/' + this.commonParams.currents.currentCostCtg, 'DELETE');
             if (!result.error) { await this.openNewRoute('/costs'); }
         }
     }
 
-    toEditCategory(e:any) {
-        const choiceCtg = e.srcElement.getAttribute('choice-ctg-id');
-        const choiceCtgName = e.srcElement.getAttribute('choice-ctg-name');
-        if (choiceCtg && choiceCtgName && this.commonParams) {
-            this.commonParams.currents.currentCostCtg = choiceCtg;
+    toEditCategory(e:PointerEvent) {
+ // console.log('target')
+ //        console.log(e.target);
+ // console.log(e.target);
+    // @ts-ignore
+        const choiceCtg:string | undefined = (e.srcElement as HTMLElement).getAttribute('choice-ctg-id');
+        // @ts-ignore
+        const choiceCtgName:string | undefined = (e.srcElement as HTMLElement).getAttribute('choice-ctg-name');
+
+        if (choiceCtg && choiceCtgName && this.commonParams && this.commonParams.currents) {
+            this.commonParams.currents.currentCostCtg =  parseInt(choiceCtg);
             this.commonParams.currents.costCategory = choiceCtgName;
+                // console.log(this.commonParams.currents.costCategory);
             this.openNewRoute('/cost/edit');
         }
     }
